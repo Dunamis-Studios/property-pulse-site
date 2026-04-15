@@ -145,16 +145,65 @@
           supports CRM customization and HubDB)
         </li>
         <li>
-          Admin or App Marketplace permissions in your HubSpot portal to
-          install the app
+          Super admin permissions (or App Marketplace permissions) on
+          the HubSpot portal you want to install into -- only a user
+          with those permissions can approve the OAuth scope consent
+          screen on behalf of the account
         </li>
       </ul>
 
-      <h3>Step 1: Add Property Pulse to a Record View</h3>
+      <h3>Step 1: Install and Authorize the App</h3>
       <p>
-        After installing Property Pulse in your HubSpot portal, the card
-        will not automatically appear on any record. You need to add it
-        to a record view for each object type you want to use it on.
+        Property Pulse uses OAuth for installation. You'll approve a
+        set of read-only scopes on a HubSpot-hosted consent screen, and
+        HubSpot will connect your portal to the app. No private app
+        token, no client secret, no manual credential entry.
+      </p>
+      <div class="step">
+        <div class="step-number">1</div>
+        <p>
+          From the HubSpot Marketplace listing for Property Pulse, click
+          <strong>Install app</strong>. HubSpot will prompt you to pick
+          which portal to install into if you have access to more than
+          one.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <p>
+          Review the scopes Property Pulse is requesting on the consent
+          screen. The app asks for read access to contact, company,
+          deal, ticket, custom object, and owner records and schemas,
+          plus HubDB access for storing tracked-property configuration
+          inside your portal. There are no write scopes for CRM records
+          -- Property Pulse cannot modify your data.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <p>
+          Click <strong>Connect app</strong>. HubSpot redirects to the
+          Property Pulse OAuth callback, which exchanges the
+          authorization code for a refresh token and stores it against
+          your portal ID. You'll see a confirmation page that the app
+          was installed successfully.
+        </p>
+      </div>
+      <div class="note">
+        <strong>Note:</strong> You can revoke Property Pulse's access at
+        any time from
+        <strong
+          >Settings → Integrations → Connected Apps → Property Pulse →
+          Uninstall</strong
+        >. Uninstalling invalidates the stored refresh token immediately.
+      </div>
+
+      <h3>Step 2: Add Property Pulse to a Record View</h3>
+      <p>
+        Installing the app makes the Property Pulse card available in
+        the card library, but it won't automatically appear on any
+        record. You need to add it to a record view for each object
+        type you want to use it on.
       </p>
       <div class="step">
         <div class="step-number">1</div>
@@ -208,7 +257,7 @@
         <p>
           Save the customization. The Property Pulse card will now
           appear on every record of that object type. It will start
-          empty until you configure tracked properties in Step 2.
+          empty until you configure tracked properties in Step 3.
         </p>
       </div>
       <div class="note">
@@ -218,12 +267,12 @@
         well. Each object type has its own record view layout.
       </div>
 
-      <h3>Step 2: Configure Tracked Properties</h3>
+      <h3>Step 3: Configure Tracked Properties</h3>
       <div class="step">
         <div class="step-number">1</div>
         <p>
           Open any CRM record where you added the Property Pulse card
-          in Step 1. In the bottom-right corner of the card, click the
+          in Step 2. In the bottom-right corner of the card, click the
           <strong>Settings</strong> gear to open the Property Pulse
           settings page.
         </p>
@@ -255,7 +304,7 @@
         </p>
       </div>
 
-      <h3>Step 3: Per-Section Settings</h3>
+      <h3>Step 4: Per-Section Settings</h3>
       <p>Each object type section has two global controls:</p>
       <ul>
         <li>
@@ -272,7 +321,7 @@
         </li>
       </ul>
 
-      <h3>Step 4: Per-Property Settings</h3>
+      <h3>Step 5: Per-Property Settings</h3>
       <p>
         Each tracked property card exposes three display options that
         control how that specific property's tile renders on the record:
@@ -296,7 +345,7 @@
         </li>
       </ul>
 
-      <h3>Step 5: Save</h3>
+      <h3>Step 6: Save</h3>
       <p>
         Use the <strong>Save {Object Type} settings</strong> button at
         the bottom of each section to save changes to that section only,
@@ -306,10 +355,15 @@
       </p>
 
       <div class="note">
-        <strong>Note:</strong> Settings are stored inside your own HubSpot
-        portal as a HubDB table called
-        <em>property_pulse_config_v2</em>. Nothing is stored on any
-        external server.
+        <strong>Note:</strong> Tracked-property settings are stored inside
+        your own HubSpot portal as a HubDB table called
+        <em>property_pulse_config_v2</em>. No CRM data or settings are
+        stored externally. The only thing Property Pulse stores outside
+        your portal is a HubSpot OAuth refresh token, kept on the app's
+        backend server so the app can authenticate against HubSpot APIs
+        on your behalf. See the
+        <a href="privacy.html" style="color: #f5793a">privacy policy</a>
+        for full details.
       </div>
 
       <h3>How the Card Renders on a Record</h3>

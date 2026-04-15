@@ -107,22 +107,31 @@
 
       <h3>1. What We Collect</h3>
       <p>
-        <strong>We do not collect or store any of your data on any
-        external server.</strong>
-        Property Pulse runs entirely inside your HubSpot portal as a
-        CRM extension and serverless function hosted by HubSpot. The
-        App accesses the following data only in real time, only within
-        your portal, and only for as long as a page is open:
+        <strong
+          >We do not collect, store, or retain any of your CRM data on
+          any external server.</strong>
+        Property data, property change history, and per-record details
+        are read from HubSpot's APIs in real time on each request and
+        are never persisted outside your portal. The only thing the
+        App stores outside your portal is a HubSpot OAuth refresh
+        token (described below), which is the minimum required to let
+        the App authenticate against HubSpot APIs on your behalf when
+        you use it.
+      </p>
+      <p>
+        The App accesses the following CRM data only in real time,
+        only for the duration of a single page load, and only to
+        render the Property Pulse card or settings page:
       </p>
       <ul>
-        <li>CRM property definitions for the record being viewed</li>
+        <li>CRM property definitions for the object type being viewed</li>
         <li>
           Property history entries for tracked properties on the record
           being viewed
         </li>
         <li>
-          Owner directory entries (to resolve owner IDs and the
-          author name on manual property changes)
+          Owner directory entries (to resolve owner IDs and resolve
+          the author name on manual property changes)
         </li>
         <li>
           Custom object schemas (to discover which custom object types
@@ -130,14 +139,45 @@
         </li>
       </ul>
       <p>
-        This data is read directly from HubSpot's APIs by a serverless
-        function running inside your portal, rendered into the CRM
-        card, and discarded as soon as the page is closed. Nothing is
-        transmitted to, logged by, or persisted on any Dunamis Studios
-        server.
+        None of this data is logged, cached beyond the lifetime of an
+        individual request, or persisted on any Dunamis Studios server.
       </p>
 
-      <h3>2. Where Settings Are Stored</h3>
+      <h3>2. OAuth Tokens</h3>
+      <p>
+        Property Pulse installs into your portal via HubSpot's OAuth
+        flow. When you approve the install, HubSpot issues the App a
+        pair of tokens:
+      </p>
+      <ul>
+        <li>
+          A short-lived <strong>access token</strong> (~30 minute
+          lifetime) used to authenticate HubSpot API calls on your
+          behalf.
+        </li>
+        <li>
+          A longer-lived <strong>refresh token</strong> used to obtain
+          a new access token when the current one expires.
+        </li>
+      </ul>
+      <p>
+        The refresh token for your portal is stored on the App's
+        backend server (hosted on Vercel) in a Redis database, keyed
+        by your HubSpot portal ID. This is the <em>only</em> thing the
+        App persists outside your portal. Access tokens are held only
+        in memory for the duration of a single request and are not
+        written to any persistent store.
+      </p>
+      <p>
+        The refresh token is never exposed to any third party, never
+        logged, and is protected by the HubSpot OAuth scopes your
+        admin approved on install. Property Pulse only requests
+        read-only scopes for CRM objects and schemas, plus HubDB
+        access for storing tracked-property configuration inside your
+        own portal -- it cannot modify your CRM records.
+      </p>
+
+      <h3>3. Where Settings Are Stored</h3>
       <p>
         Admin-configured tracked properties and per-property display
         settings are stored inside
@@ -149,49 +189,69 @@
       <p>
         Because the configuration table lives entirely inside your
         portal, you own the data and can inspect or delete it at any
-        time from the HubDB area of HubSpot.
+        time from the HubDB area of HubSpot. No copy of this
+        configuration is kept on the App's backend server.
       </p>
 
-      <h3>3. Data Sharing</h3>
+      <h3>4. Data Sharing</h3>
       <p>
-        We do not collect your data, so there is nothing to sell,
-        rent, or share with third parties. The App does not contain
-        any third-party analytics, tracking pixels, or telemetry.
+        We do not sell, rent, or share any data with third parties.
+        The App does not contain any third-party analytics, tracking
+        pixels, or telemetry. The refresh token stored on the backend
+        is used solely to make authorized API requests to HubSpot on
+        your behalf.
       </p>
 
-      <h3>4. Data Retention</h3>
+      <h3>5. Data Retention</h3>
       <p>
-        There is no external retention policy because there is no
-        external data. When you uninstall the App, you may optionally
-        delete the
-        <em>property_pulse_config_v2</em> HubDB table from your own
-        portal to remove the stored settings.
+        When you uninstall Property Pulse from your portal, the
+        HubSpot OAuth refresh token associated with your portal is
+        invalidated immediately by HubSpot, and the App deletes its
+        stored copy from Redis on next access (or you can request
+        immediate deletion at the contact email below).
       </p>
-
-      <h3>5. Security</h3>
       <p>
-        All App code runs inside HubSpot's infrastructure. Property
-        Pulse uses the static access token HubSpot provisions for the
-        app -- it never stores or transmits HubSpot credentials to any
-        external system. All API calls between the App and HubSpot
-        happen inside HubSpot's network over HTTPS.
+        The <em>property_pulse_config_v2</em> HubDB table remains in
+        your portal after uninstall so you don't lose your tracked
+        property configuration if you ever reinstall. You can delete
+        it manually from the HubDB area of HubSpot at any time.
       </p>
 
-      <h3>6. Your Rights</h3>
+      <h3>6. Security</h3>
+      <p>
+        Communication between the App's HubSpot UI extension and the
+        backend server is authenticated using HubSpot's signed-request
+        protocol: every request the UI extension makes is signed with
+        the app's client secret, and the backend rejects any request
+        whose signature doesn't validate. All traffic between the UI
+        extension, the backend, and HubSpot APIs runs over HTTPS.
+      </p>
+      <p>
+        Refresh tokens are stored in a managed Redis instance
+        accessible only to the backend server's authenticated clients.
+        The HubSpot OAuth client secret lives only as an environment
+        variable on the backend server and is never sent to the
+        browser or stored in client-side code.
+      </p>
+
+      <h3>7. Your Rights</h3>
       <p>
         You may revoke the App's access to your HubSpot portal at any
-        time by uninstalling it from your Connected Apps. Because no
-        data is stored externally, uninstalling immediately ends all
-        access.
+        time by uninstalling it from
+        <strong>Settings → Integrations → Connected Apps</strong>.
+        Uninstalling immediately invalidates the stored OAuth tokens
+        and ends all API access. To additionally request deletion of
+        your backend-stored refresh token record before it's purged
+        on next access, contact us at the email below.
       </p>
 
-      <h3>7. Changes to This Policy</h3>
+      <h3>8. Changes to This Policy</h3>
       <p>
         We may update this Privacy Policy from time to time. We will
         post the updated policy on this page with a revised date.
       </p>
 
-      <h3>8. Contact</h3>
+      <h3>9. Contact</h3>
       <p>
         Questions about this Privacy Policy? Contact us at
         <a href="mailto:joshua.r.bradford1@gmail.com" style="color: #f5793a"
