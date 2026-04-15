@@ -133,8 +133,9 @@
     <div class="content">
       <h2>Setup Guide</h2>
       <p class="subtitle">
-        Install Property Pulse, configure tracked properties, and start
-        seeing live property history on every record in minutes.
+        Add the Property Pulse card to your record views, configure
+        tracked properties per object type, and start seeing live
+        property history on every record in minutes.
       </p>
 
       <h3>Requirements</h3>
@@ -149,42 +150,80 @@
         </li>
       </ul>
 
-      <h3>Step 1: Install the App</h3>
+      <h3>Step 1: Add Property Pulse to a Record View</h3>
+      <p>
+        After installing Property Pulse in your HubSpot portal, the card
+        will not automatically appear on any record. You need to add it
+        to a record view for each object type you want to use it on.
+      </p>
       <div class="step">
         <div class="step-number">1</div>
         <p>
-          Click the Install button on the HubSpot Marketplace listing for
-          Property Pulse. HubSpot will prompt you to choose the portal to
-          install the app into.
+          In HubSpot, navigate to any CRM record page for the object
+          type you want to add the card to -- a Contact, Company, Deal,
+          Ticket, or any Custom Object record.
         </p>
       </div>
       <div class="step">
         <div class="step-number">2</div>
         <p>
-          Review the requested permissions and click
-          <strong>Connect app</strong>. Property Pulse requires read
-          access to CRM records, schemas, and owners across Contacts,
-          Companies, Deals, Tickets, and Custom Objects in order to fetch
-          property metadata and change history. It also needs HubDB
-          access to store the admin-configured list of tracked properties
-          inside your portal.
+          In the top right of the record view, click
+          <strong>Customize</strong>.
         </p>
       </div>
       <div class="step">
         <div class="step-number">3</div>
         <p>
-          Once authorized, the Property Pulse tab will appear on every
-          supported CRM record type. It will start empty until you
-          configure tracked properties in Step 2.
+          Decide where the Property Pulse card should live. You can add
+          it to an existing tab (such as the <em>Overview</em> tab) or
+          create a new dedicated tab for it. If you're tracking more
+          than a handful of properties, a dedicated tab keeps the rest
+          of the record view uncluttered.
         </p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <p>
+          If you're creating a new tab, add it first and give it a
+          name -- for example, <em>Property Pulse</em> or
+          <em>Property History</em>.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">5</div>
+        <p>
+          In the tab editor, open the card library on the left and
+          search for <strong>Property Pulse</strong> to find the card.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">6</div>
+        <p>
+          Drag the card onto the tab layout, or click it to add it.
+          Position it wherever you want it to appear.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">7</div>
+        <p>
+          Save the customization. The Property Pulse card will now
+          appear on every record of that object type. It will start
+          empty until you configure tracked properties in Step 2.
+        </p>
+      </div>
+      <div class="note">
+        <strong>Note:</strong> Record view customization is per object
+        type. If you want Property Pulse on Contacts <em>and</em> on
+        Companies, repeat this process once from a Company record as
+        well. Each object type has its own record view layout.
       </div>
 
       <h3>Step 2: Configure Tracked Properties</h3>
       <div class="step">
         <div class="step-number">1</div>
         <p>
-          Open any CRM record that has the Property Pulse tab. In the
-          bottom-right corner of the card, click the
+          Open any CRM record where you added the Property Pulse card
+          in Step 1. In the bottom-right corner of the card, click the
           <strong>Settings</strong> gear to open the Property Pulse
           settings page.
         </p>
@@ -275,8 +314,9 @@
 
       <h3>How the Card Renders on a Record</h3>
       <p>
-        Once configured, every supported record gets a Property Pulse tab
-        that shows one tile per tracked property. Each tile displays:
+        Once configured, every record of an object type that has the
+        Property Pulse card added to its view will show one tile per
+        tracked property inside the card. Each tile displays:
       </p>
       <ul>
         <li>
