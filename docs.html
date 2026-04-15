@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setup Guide — Property Pulse</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f7f8fa;
+        color: #1a1a2e;
+      }
+      header {
+        background: #fff;
+        border-bottom: 1px solid #e8e8e8;
+        padding: 20px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      header h1 {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      nav a {
+        margin-left: 24px;
+        text-decoration: none;
+        color: #444;
+        font-size: 14px;
+      }
+      nav a:hover {
+        color: #f5793a;
+      }
+      .content {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 60px 40px;
+      }
+      h2 {
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .subtitle {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 48px;
+      }
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 40px 0 12px;
+      }
+      h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 24px 0 8px;
+      }
+      p {
+        font-size: 15px;
+        color: #444;
+        line-height: 1.8;
+        margin-bottom: 16px;
+      }
+      ol,
+      ul {
+        padding-left: 24px;
+        margin-bottom: 16px;
+      }
+      li {
+        font-size: 15px;
+        color: #444;
+        line-height: 1.8;
+        margin-bottom: 8px;
+      }
+      .step {
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 16px;
+      }
+      .step-number {
+        display: inline-block;
+        background: #f5793a;
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 28px;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .note {
+        background: #fff8f4;
+        border-left: 4px solid #f5793a;
+        padding: 16px 20px;
+        border-radius: 4px;
+        margin: 24px 0;
+        font-size: 14px;
+        color: #555;
+      }
+      footer {
+        text-align: center;
+        padding: 32px;
+        font-size: 13px;
+        color: #999;
+      }
+      footer a {
+        color: #f5793a;
+        text-decoration: none;
+        margin: 0 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Property Pulse</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="support.html">Support</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </header>
+    <div class="content">
+      <h2>Setup Guide</h2>
+      <p class="subtitle">
+        Install Property Pulse, configure tracked properties, and start
+        seeing live property history on every record in minutes.
+      </p>
+
+      <h3>Requirements</h3>
+      <ul>
+        <li>
+          A HubSpot account with access to CRM records (any tier that
+          supports CRM customization and HubDB)
+        </li>
+        <li>
+          Admin or App Marketplace permissions in your HubSpot portal to
+          install the app
+        </li>
+      </ul>
+
+      <h3>Step 1: Install the App</h3>
+      <div class="step">
+        <div class="step-number">1</div>
+        <p>
+          Click the Install button on the HubSpot Marketplace listing for
+          Property Pulse. HubSpot will prompt you to choose the portal to
+          install the app into.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <p>
+          Review the requested permissions and click
+          <strong>Connect app</strong>. Property Pulse requires read
+          access to CRM records, schemas, and owners across Contacts,
+          Companies, Deals, Tickets, and Custom Objects in order to fetch
+          property metadata and change history. It also needs HubDB
+          access to store the admin-configured list of tracked properties
+          inside your portal.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <p>
+          Once authorized, the Property Pulse tab will appear on every
+          supported CRM record type. It will start empty until you
+          configure tracked properties in Step 2.
+        </p>
+      </div>
+
+      <h3>Step 2: Configure Tracked Properties</h3>
+      <div class="step">
+        <div class="step-number">1</div>
+        <p>
+          Open any CRM record that has the Property Pulse tab. In the
+          bottom-right corner of the card, click the
+          <strong>Settings</strong> gear to open the Property Pulse
+          settings page.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <p>
+          The settings page shows one collapsible accordion per supported
+          object type -- Contacts, Companies, Deals, Tickets, plus one
+          for each custom object in your portal. Expand the object type
+          you want to configure.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <p>
+          Use the <strong>Add a property to track</strong> dropdown at
+          the bottom of the section to pick a property from the object
+          type's full property list. Click <strong>Add</strong> to add
+          it. Repeat for every property you want to track.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <p>
+          Reorder tracked properties using the <strong>↑</strong> and
+          <strong>↓</strong> buttons on each property card. The order
+          here is the order the tiles will appear on the record.
+        </p>
+      </div>
+
+      <h3>Step 3: Per-Section Settings</h3>
+      <p>Each object type section has two global controls:</p>
+      <ul>
+        <li>
+          <strong>Record layout columns</strong> -- how many columns of
+          tiles to render on the record page. 1 column gives each
+          property a full-width tile; 2 or 3 columns tile them side by
+          side for a denser layout.
+        </li>
+        <li>
+          <strong>Allow users to add their own properties</strong> --
+          when on, individual users can add their own tracked properties
+          in addition to the admin-configured set. See "User-added
+          properties" below.
+        </li>
+      </ul>
+
+      <h3>Step 4: Per-Property Settings</h3>
+      <p>
+        Each tracked property card exposes three display options that
+        control how that specific property's tile renders on the record:
+      </p>
+      <ul>
+        <li>
+          <strong>Log</strong> -- when on, shows a paginated change log
+          table beneath the current value, with one row per property
+          change.
+        </li>
+        <li>
+          <strong>Source</strong> -- when on, adds a Source column to
+          the change log table showing where each edit came from (CRM
+          UI, Workflow, API, Integration, Import, etc.) and, for manual
+          edits, the user who made the change.
+        </li>
+        <li>
+          <strong>Card size</strong> -- Full uses standard padding on
+          the record tile. Compact reduces padding for a tighter layout
+          when tracking many properties.
+        </li>
+      </ul>
+
+      <h3>Step 5: Save</h3>
+      <p>
+        Use the <strong>Save {Object Type} settings</strong> button at
+        the bottom of each section to save changes to that section only,
+        or the <strong>Save all changes</strong> button at the bottom of
+        the page to save every section with unsaved changes at once.
+        Sections with no changes are skipped.
+      </p>
+
+      <div class="note">
+        <strong>Note:</strong> Settings are stored inside your own HubSpot
+        portal as a HubDB table called
+        <em>property_pulse_config_v2</em>. Nothing is stored on any
+        external server.
+      </div>
+
+      <h3>How the Card Renders on a Record</h3>
+      <p>
+        Once configured, every supported record gets a Property Pulse tab
+        that shows one tile per tracked property. Each tile displays:
+      </p>
+      <ul>
+        <li>
+          The property's display name and a badge indicating whether it
+          was admin-tracked or added by the current user
+        </li>
+        <li>
+          The current value and -- if there's a prior entry -- the
+          previous value with a relative timestamp
+        </li>
+        <li>
+          A structured, sortable, paginated change log table with
+          Property Value, Source, and Date columns. Owner-type properties
+          automatically resolve numeric owner IDs to user names (e.g.
+          "Joshua Bradford" instead of "26447425")
+        </li>
+      </ul>
+
+      <h3>User-Added Properties</h3>
+      <p>
+        If the admin enables
+        <strong>Allow users to add their own properties</strong> for an
+        object type, individual users can track additional properties
+        beyond the admin-configured set. User-added properties:
+      </p>
+      <ul>
+        <li>
+          Appear in a separate "Your additional properties" section on
+          the record, underneath the admin-tracked section
+        </li>
+        <li>
+          Are scoped to the current user only -- other users in the
+          portal will not see them
+        </li>
+        <li>
+          Apply across every record of that object type, so the user
+          only has to add the property once
+        </li>
+        <li>
+          Can be removed by the user at any time via the Remove button
+          on the tile -- removal also only affects that user's view
+        </li>
+      </ul>
+
+      <h3>Troubleshooting</h3>
+      <h4>The card shows "No recorded changes for this property"</h4>
+      <p>
+        HubSpot only retains property history for properties that have
+        been edited since tracking started. If a property has never
+        changed on a record, there is nothing for Property Pulse to
+        display. Make an edit to the property and refresh the record.
+      </p>
+      <h4>An owner property shows a raw numeric ID</h4>
+      <p>
+        Property Pulse resolves owner IDs by calling the HubSpot owners
+        API. If the ID doesn't match any active owner -- for example, if
+        the owner was deleted or never existed -- the tile falls back to
+        rendering "Owner &lt;id&gt;" so you can still see the value.
+      </p>
+      <h4>Settings page is empty after installing</h4>
+      <p>
+        The first time you open the settings page, Property Pulse
+        creates the HubDB table it uses for configuration storage. If
+        this fails, confirm that HubDB is enabled for your portal
+        (requires CMS Hub Professional or higher, or Marketing Hub
+        Professional or higher).
+      </p>
+    </div>
+    <footer>
+      <p>Built by <strong>Dunamis Studios</strong></p>
+      <br />
+      <a href="index.html">Home</a>
+      <a href="support.html">Support</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </footer>
+  </body>
+</html>
