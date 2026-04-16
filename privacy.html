@@ -171,10 +171,13 @@
       <p>
         The refresh token is never exposed to any third party, never
         logged, and is protected by the HubSpot OAuth scopes your
-        admin approved on install. Property Pulse only requests
-        read-only scopes for CRM objects and schemas, plus HubDB
-        access for storing tracked-property configuration inside your
-        own portal -- it cannot modify your CRM records.
+        admin approved on install. Property Pulse requests read and
+        write scopes for CRM objects and schemas, plus HubDB access
+        for storing tracked-property configuration inside your own
+        portal. Write access is used only when a user explicitly
+        edits a property value through the inline editing feature on
+        the card — the App never modifies CRM data automatically or
+        in the background.
       </p>
 
       <h3>3. Where Settings Are Stored</h3>
